@@ -11,12 +11,13 @@ class KnapsackItem(object):
     @property
     def ratio(self):
         try:
-            return self.weight/self.price
+            return self.price/self.weight
         except:
             return 0
 
     def __str__(self):
-        return 'Item w:' + str(self.weight) + ' p:' + str(self.price)
+        return 'Item w:' + str(self.weight) + ' p:' + str(self.price) + ' r:'\
+               + str(self.ratio)
 
 
 class KnapsackJob(object):

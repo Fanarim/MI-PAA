@@ -32,10 +32,10 @@ after_hs = timer()
 
 # calculate and report relative error
 relative_errors = []
-for i in range(40):
+for i in range(50):
     bf_price = bruteforce_results[i][2]
     hs_price = heuristics_results[i][2]
-    relative_error = (bf_price - hs_price)/bf_price
+    relative_error = (float(bf_price) - float(hs_price))/float(bf_price)
     relative_errors.append(relative_error)
 
 print('\nAverage relative error is: {}%'

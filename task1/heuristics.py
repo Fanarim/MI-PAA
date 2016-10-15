@@ -25,9 +25,11 @@ def run_heuristics(jobs):
                                         key=lambda x: x[1].ratio,
                                         reverse=True)
 
+        # print([str(x[1]) for x in items_positions_sorted])
+
         # calculate which items should be used using simple heuristics
         for item in items_positions_sorted:
-            if weight + item[1].weight < job.capacity:
+            if weight + item[1].weight <= job.capacity:
                 weight += item[1].weight
                 price += item[1].price
                 items[item[0]] = True
