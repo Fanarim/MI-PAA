@@ -46,6 +46,8 @@ for i in range(50):
 
 print('\nAverage relative error is: {}%'
       .format(statistics.mean(relative_errors)*100))
+print('Max error is: {}%'
+      .format(max(relative_errors)*100))
 
 print('\nExecution times:')
 print('Bruteforce: {0:.10f}s'.format(after_bf - before_bf))
