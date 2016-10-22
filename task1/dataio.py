@@ -48,6 +48,38 @@ def get_knapsack_jobs(dataset_size):
     return jobs
 
 
+def get_expected_results(dataset_size):
+    expected_results = []
+    with open('solutions/knap_{}.sol.dat'.format(dataset_size)) as inf:
+        for line in inf.readlines():
+            id, item_count, price = line.split()[:3]
+            used_items = line.split()[3:]
+            for i in range(len(used_items)):
+                if used_items[i] == '1':
+                    used_items[i] = True
+                else:
+                    used_items[i] = False
+
+            expected_results.append((int(id),
+                                     int(item_count),
+                                     int(price),
+                                     tuple(used_items)))
+    return expected_results
+
+
+def compare_results(expected_results, actual_results):
+    correct = True
+    for i in range(len(expected_results)):
+        # print(expected_results[i], actual_results[i])
+        if not (expected_results[i][0] == actual_results[i][0] and
+                expected_results[i][1] == actual_results[i][1] and
+                expected_results[i][2] == actual_results[i][2]):
+            correct = False
+            print('Invalid result for job #{}! '
+                  .format(expected_results[i][0]))
+    return correct
+
+
 def report_knapsack_results(job_id, item_count, price_best, items_best):
     print("{} {} {} ".format(job_id,
                              item_count,

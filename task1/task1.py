@@ -4,10 +4,11 @@
 
 import statistics
 import sys
+import time
+
 from bruteforce import run_bruteforce
 from heuristics import run_heuristics
 from dataio import *
-from timeit import default_timer as timer
 
 
 try:
@@ -19,16 +20,21 @@ except:
 jobs = get_knapsack_jobs(dataset_size)
 
 # run bruteforce
-before_bf = timer()
+before_bf = time.process_time()
 bruteforce_results = run_bruteforce(jobs)
-after_bf = timer()
+after_bf = time.process_time()
 
-# TODO parse sample correct results, compare them with bruteforce
+# get expected results
+expected_results = get_expected_results(dataset_size)
+
+# compare bruteforce and heuristics
+if not compare_results(expected_results, bruteforce_results):
+    exit(1)
 
 # run heuristics
-before_hs = timer()
+before_hs = time.process_time()
 heuristics_results = run_heuristics(jobs)
-after_hs = timer()
+after_hs = time.process_time()
 
 # calculate and report relative error
 relative_errors = []
