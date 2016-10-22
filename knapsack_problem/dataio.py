@@ -70,13 +70,13 @@ def get_expected_results(dataset_size):
 def compare_results(expected_results, actual_results):
     correct = True
     for i in range(len(expected_results)):
-        # print(expected_results[i], actual_results[i])
         if not (expected_results[i][0] == actual_results[i][0] and
                 expected_results[i][1] == actual_results[i][1] and
                 expected_results[i][2] == actual_results[i][2]):
             correct = False
-            print('Invalid result for job #{}! '
+            print('Invalid result for job #{}: '
                   .format(expected_results[i][0]))
+            print(expected_results[i], actual_results[i])
     return correct
 
 
