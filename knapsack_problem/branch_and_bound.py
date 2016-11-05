@@ -15,18 +15,14 @@ def run_bb(job):
             return
 
         # stop recursion if better results are not possible
-        possible_price = current_price
-        position = len(items_used)
-        while position < item_count:
-            position += 1
-            possible_price += current_price + job.items[position - 1].price
+        possible_price = current_price + remaining_prices[len(items_used)]
         if possible_price < price_best:
             return
 
         # add next item
         new_price = current_price + job.items[len(items_used)].price
         new_weight = current_weight + job.items[len(items_used)].weight
-        # stop recursion if max capacity is reached
+        # stop recursion if max capacity would be reached
         if new_weight <= job.capacity:
             # set a new best
             if new_price > price_best:
@@ -44,6 +40,12 @@ def run_bb(job):
     item_count = len(job.items)
     price_best = 0
     items_best = []
+
+    # get remaining prices array
+    remaining_prices = [0] * item_count
+    remaining_prices[item_count-1] = job.items[item_count-1].price
+    for i in range(item_count-1-1, 0, -1):
+        remaining_prices[i] = remaining_prices[i+1] + job.items[i].price
 
     bb_step([], 0, 0)
 

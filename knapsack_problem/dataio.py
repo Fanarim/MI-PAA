@@ -31,6 +31,10 @@ class KnapsackJob(object):
             else:
                 continue
 
+    @property
+    def item_count(self):
+        return len(self.items)
+
     def __str__(self):
         return ('Knapsack job ' +
                 self.id +
