@@ -29,7 +29,7 @@ def run_dynamic(job):
                 x -= 1
 
         while len(best_items) != job.item_count:
-            best_items.append(False) 
+            best_items.append(False)
         return (best_price, best_items[::-1])
 
 
@@ -91,4 +91,4 @@ def run_dynamic(job):
     dynamic_step(0, 0)
     price_best, items_best = get_best_solution()
     report_knapsack_results(job.id, job.item_count, price_best, items_best)
-    return ((job.id, job.item_count, price_best, items_best))
+    return (job.id, job.item_count, price_best, items_best)
